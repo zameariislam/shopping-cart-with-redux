@@ -1,9 +1,23 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import Cart from './Cart'
 
 
 
 function SideBar() {
+
+    const products = useSelector(state => state.products)
+    // console.log(products)
+
+    let totalqant = 0
+    let totalpr = 0
+    products.forEach(product => {
+        totalqant = product.soldQuantity + totalqant
+        totalpr = product.price * product.soldQuantity + totalpr
+
+
+
+    })
 
     return (
         <>
@@ -13,7 +27,7 @@ function SideBar() {
                     <div className="flex justify-center items-center text-center">
                         <div className="text-xl font-semibold">
                             <p>Total Item</p>
-                            <p className="text-5xl">TotalQuantity :100</p>
+                            <p className="text-2xl">TotalQuantity :{totalqant}</p>
                         </div>
                     </div>
                 </div>
@@ -21,7 +35,7 @@ function SideBar() {
                     <div className="flex justify-center items-center text-center">
                         <div className="text-xl font-semibold">
                             <p>Total Price</p>
-                            <p className="text-5xl">৳ 10000</p>
+                            <p className="text-3xl">৳ {totalpr}</p>
                         </div>
                     </div>
                 </div>
